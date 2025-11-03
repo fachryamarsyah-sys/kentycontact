@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KennStoreID - Social Media & Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #ff6b6b, #ffa726);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+            animation: pulse 2s infinite;
+            overflow: hidden;
+            border: 3px solid white;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #ff6b6b, #ffa726, #4ecdc4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: colorShift 5s infinite alternate;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .menu-item:hover::before {
+            left: 100%;
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .whatsapp .icon {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+        }
+
+        .tiktok .icon {
+            background: linear-gradient(135deg, #000000, #69C9D0, #EE1D52);
+        }
+
+        .instagram .icon {
+            background: linear-gradient(135deg, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040, #F77737, #FCAF45);
+        }
+
+        .youtube .icon {
+            background: linear-gradient(135deg, #FF0000, #CC0000);
+        }
+
+        .group .icon {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+        }
+
+        .channel .icon {
+            background: linear-gradient(135deg, #2196F3, #0D47A1);
+        }
+
+        .menu-text {
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .menu-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .menu-desc {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .arrow {
+            font-size: 18px;
+            opacity: 0.7;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover .arrow {
+            transform: translateX(5px);
+        }
+
+        .music-player {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .music-info {
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .music-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .music-artist {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .music-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .music-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .footer {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-top: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes colorShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="https://psychiatric-pink-kbrmvriuyq.edgeone.app/20251103_201150.jpg" alt="KennStoreID Logo">
+            </div>
+            <h1>KennStoreID</h1>
+            <p class="subtitle">Social Media & Contact</p>
+        </div>
+
+        <div class="menu">
+            <a href="https://wa.me/+6283173941126" class="menu-item whatsapp" target="_blank">
+                <div class="icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="menu-text">
+                    <div class="menu-title">Nomor KennStoreID</div>
+                    <div class="menu-desc">+62 831-7394-1126</div>
+                </div>
+                <div class="arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </a>
+
+            <a href="https://tiktok.com/@kennstoreid1" class="menu-item tiktok" target="_blank">
+                <div class="icon">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+                <div class="menu-text">
+                    <div class="menu-title">TikTok</div>
+                    <div class="menu-desc">@kennstoreid1</div>
+                </div>
+                <div class="arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </a>
+
+            <a href="https://instagram.com/kennstoreid1" class="menu-item instagram" target="_blank">
+                <div class="icon">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div class="menu-text">
+                    <div class="menu-title">Instagram</div>
+                    <div class="menu-desc">@kennstoreid1</div>
+                </div>
+                <div class="arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </a>
+
+            <a href="https://youtube.com/@kennstoreid" class="menu-item youtube" target="_blank">
+                <div class="icon">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <div class="menu-text">
+                    <div class="menu-title">YouTube</div>
+                    <div class="menu-desc">@kennstoreid</div>
+                </div>
+                <div class="arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </a>
+
+            <a href="https://chat.whatsapp.com/EQP4U4LCsuf1hHQB0TcIEl?mode=wwt" class="menu-item group" target="_blank">
+                <div class="icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="menu-text">
+                    <div class="menu-title">Grub V¹ by KennStoreID</div>
+                    <div class="menu-desc">Join our WhatsApp group</div>
+                </div>
+                <div class="arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </a>
+
+            <a href="https://whatsapp.com/channel/0029VbBE3Sa4NVikUHTW0b2D" class="menu-item channel" target="_blank">
+                <div class="icon">
+                    <i class="fas fa-broadcast-tower"></i>
+                </div>
+                <div class="menu-text">
+                    <div class="menu-title">Saluran Stok & Testi</div>
+                    <div class="menu-desc">By KennStoreID</div>
+                </div>
+                <div class="arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="music-player">
+            <div class="music-info">
+                <div class="music-title">Rosa Linn - Snap (Speed Up)</div>
+                <div class="music-artist">TikTok Version</div>
+            </div>
+            <div class="music-controls">
+                <div class="music-btn" id="playBtn">
+                    <i class="fas fa-play"></i>
+                </div>
+                <div class="music-btn" id="pauseBtn">
+                    <i class="fas fa-pause"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            &copy; 2023 KennStoreID | All Rights Reserved
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://wily-amethyst-3d7p2obrbp.edgeone.app/Rosa%20Linn%20-%20Snap%20(Speed%20Up)%20snapping%20one,%20two,%20where%20are%20you%20(Lyrics%20Terjemahan)_%20Tiktok%20Version.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('bgMusic');
+            const playBtn = document.getElementById('playBtn');
+            const pauseBtn = document.getElementById('pauseBtn');
+            
+            // Auto play music when page loads
+            audio.play().catch(function(error) {
+                console.log('Auto-play prevented. User interaction required.');
+            });
+            
+            playBtn.addEventListener('click', function() {
+                audio.play();
+            });
+            
+            pauseBtn.addEventListener('click', function() {
+                audio.pause();
+            });
+            
+            // Add hover effect to menu items
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
